@@ -15,12 +15,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long userId;
-  private String username;
-  private String password;
-  private String email;
-  private Instant created;
-  private boolean enabled;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+    private String username;
+    private String password;
+    private String email;
+    private Instant created;
+    private boolean enabled;
 }

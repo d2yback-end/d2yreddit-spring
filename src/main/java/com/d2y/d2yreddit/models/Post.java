@@ -20,20 +20,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long postId;
-  private String postName;
-  @Nullable
-  private String url;
-  @Lob
-  private String description;
-  private int voteCount = 0;
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "userId", referencedColumnName = "userId")
-  private User user;
-  private Instant createdDate;
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id", referencedColumnName = "id")
-  private SubReddit subreddit;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long postId;
+    private String postName;
+    @Nullable
+    private String url;
+    @Lob
+    private String description;
+    private int voteCount = 0;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    private User user;
+    private Instant createdDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private SubReddit subreddit;
 }
