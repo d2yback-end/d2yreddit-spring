@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.d2y.d2yreddit.dto.AuthenticationResponse;
 import com.d2y.d2yreddit.dto.LoginRequest;
+import com.d2y.d2yreddit.dto.RefreshTokenRequest;
 import com.d2y.d2yreddit.dto.RegisterRequest;
 import com.d2y.d2yreddit.services.AuthService;
+import com.d2y.d2yreddit.services.RefreshTokenService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -22,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class AuthController {
 
     private final AuthService authService;
+    private final RefreshTokenService refreshTokenService;
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody RegisterRequest registerRequest) {
@@ -38,5 +42,16 @@ public class AuthController {
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
         return authService.login(loginRequest);
+    }
+
+    @PostMapping("/refresh/token")
+    public AuthenticationResponse refreshTokens(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+        return authService.refreshToken(refreshTokenRequest);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+        refreshTokenService.deleteRefreshToken(refreshTokenRequest.getRefreshToken());
+        return ResponseEntity.status(HttpStatus.OK).body("Refresh Token Deleted Successfully!!");
     }
 }
