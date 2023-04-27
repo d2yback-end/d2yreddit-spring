@@ -19,7 +19,7 @@ import com.d2y.d2yreddit.services.CommentService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/comments")
+@RequestMapping("/api/v1/comments")
 @RequiredArgsConstructor
 public class CommentsController {
     private final CommentService commentService;
